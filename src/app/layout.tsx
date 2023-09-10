@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <main className="min-h-screen antialiased">{children}</main>
+          <div className="h-screen antialiased">{children}</div>
           <Toaster />
         </Providers>
       </body>
