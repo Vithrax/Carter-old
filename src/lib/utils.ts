@@ -1,6 +1,15 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
+}
+
+export function getRandomElementsFromArray(array: any[], count: number) {
+  const elements = [];
+  for (let i = 0; i < count; i++) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    elements.push(array.splice(randomIndex, 1)[0]);
+  }
+  return elements;
 }

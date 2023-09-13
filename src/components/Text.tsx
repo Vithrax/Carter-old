@@ -11,24 +11,26 @@ const textVariants = cva("", {
       h4: "scroll-m-20 text-xl font-semibold tracking-tight",
       p: "leading-7 [&:not(:first-child)]:mt-6",
     },
+    role: {
+      subtitle:
+        "max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8",
+    },
   },
 });
 
 interface TextProps extends React.HtmlHTMLAttributes<HTMLParagraphElement> {
-  variant?: Exclude<
-    VariantProps<typeof textVariants>["variant"],
-    null | undefined
-  >;
+  variant?: Exclude<VariantProps<typeof textVariants>["variant"], null>;
+  role?: Exclude<VariantProps<typeof textVariants>["role"], null>;
 }
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ variant = "p", className, children, ...props }, ref) => {
+  ({ variant = "p", role, className, children, ...props }, ref) => {
     const Comp = variant;
 
     return (
       <Comp
         ref={ref}
-        className={cn(textVariants({ variant }), className)}
+        className={cn(textVariants({ variant, role }), className)}
         {...props}
       >
         {children}

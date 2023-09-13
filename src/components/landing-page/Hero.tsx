@@ -6,7 +6,7 @@ import Text from "../Text";
 
 const HeroPage = () => {
   return (
-    <section className="flex h-[100dvh] snap-center flex-col justify-between">
+    <section className="flex h-[100dvh] min-h-fit snap-center flex-col justify-between">
       <Navigation />
       <div className="flex flex-col items-center justify-center gap-6 pb-10 text-center">
         <Link
@@ -47,9 +47,12 @@ const HeroPage = () => {
           </Link>
         </div>
       </div>
-      <div className="flex h-8 items-center justify-center bg-primary text-lg font-semibold text-primary-foreground md:h-12">
+      <Link
+        href="#features"
+        className="flex h-8 items-center justify-center bg-primary text-lg font-semibold text-primary-foreground md:h-12"
+      >
         Find out how it works <ChevronDown />
-      </div>
+      </Link>
     </section>
   );
 };

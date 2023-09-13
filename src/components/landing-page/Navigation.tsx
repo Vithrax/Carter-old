@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "../Logo";
 import { buttonVariants } from "../ui/Button";
 import { getUserAuth } from "@/lib/auth/utils";
+import { ThemeToggle } from "../ThemeToggle";
 
 const Navigation = async () => {
   const session = await getUserAuth();
@@ -11,6 +12,7 @@ const Navigation = async () => {
       <nav className="mx-auto flex h-full  max-w-7xl items-center justify-between px-4">
         <Logo />
         <div>{/* TODO: Nav links */}</div>
+        <ThemeToggle />
         {!session ? (
           <div className="space-x-2">
             <Link
