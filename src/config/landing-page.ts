@@ -10,12 +10,16 @@ import {
 
 export const landingPageLinks: NavItem[] = [
   {
-    section: "hero",
-    title: "",
-  },
-  {
     section: "features",
     title: "Features",
+  },
+  {
+    section: "testimonials",
+    title: "Testimonials",
+  },
+  {
+    section: "pricing",
+    title: "Pricing",
   },
 ];
 
@@ -52,7 +56,8 @@ export const landingPageFeatures: FeatureCard[] = [
   },
 ];
 
-export const testimonials = [
+// ChatGPT :)
+const testimonials = [
   {
     text: "Cartapp made budgeting a breeze. I've never been more organized in my financial life. It's a game-changer for anyone looking to save money and stay on top of their spending.",
   },
@@ -145,9 +150,44 @@ export const testimonials = [
   },
 ];
 
-export const testimonialsWithAuthor = testimonials.map(({ text }) => {
+export const testimonialsData = testimonials.map(({ text }) => {
   return {
     text,
     author: faker.person.fullName(),
+    position: faker.person.jobTitle(),
   };
 });
+
+export const pricingData = [
+  {
+    name: "Starter",
+    suggested: false,
+    description: "Free tier available for everyone by default!",
+    price: 0,
+    features: ["All-access"],
+  },
+  {
+    name: "Plus",
+    suggested: true,
+    description: "Free tier available for everyone by default!",
+    price: 5,
+    features: [
+      "Everything from starter tier",
+      "Access to our discord server",
+      "Additional support",
+    ],
+  },
+  {
+    name: "Premium",
+    suggested: false,
+    description: "Free tier available for everyone by default!",
+    price: 25,
+    features: [
+      "Everything from plus tier",
+      "Smartphone widget (Android)",
+      "Special badge on our discord server",
+      "Free item from our merchandise shop",
+      "Invite to ourconvention in Madrit",
+    ],
+  },
+];

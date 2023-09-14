@@ -13,7 +13,7 @@ const textVariants = cva("", {
     },
     role: {
       subtitle:
-        "max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8",
+        "max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8 [&:not(:first-child)]:mt-0",
     },
   },
 });

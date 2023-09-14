@@ -2,17 +2,24 @@ import Link from "next/link";
 import Logo from "../Logo";
 import { buttonVariants } from "../ui/Button";
 import { getUserAuth } from "@/lib/auth/utils";
-import { ThemeToggle } from "../ThemeToggle";
+import { landingPageLinks } from "@/config/landing-page";
 
 const Navigation = async () => {
   const session = await getUserAuth();
 
   return (
     <header className="h-[7vh] border-b">
-      <nav className="mx-auto flex h-full  max-w-7xl items-center justify-between px-4">
+      <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-4">
         <Logo />
-        <div>{/* TODO: Nav links */}</div>
-        <ThemeToggle />
+        <ul className="flex gap-4">
+          {landingPageLinks.map(({ section, title }) => {
+            return (
+              <li key={title}>
+                <Link href={`#${section}`}>{title}</Link>
+              </li>
+            );
+          })}
+        </ul>
         {!session ? (
           <div className="space-x-2">
             <Link
