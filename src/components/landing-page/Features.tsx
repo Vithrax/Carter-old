@@ -8,14 +8,14 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="flex h-[100dvh] min-h-fit snap-center flex-col items-center justify-center gap-2 bg-primary/5"
+      className="flex min-h-screen snap-center flex-col items-center justify-center gap-2 bg-primary/5"
     >
       <Text variant="h1">Features</Text>
       <Text role="subtitle" className="text-center">
         Cartapp is a feature-rich, free to use application to improve overall
         efficency of the shopping. Here&apos;s how we do it.
       </Text>
-      <div className="mt-4 grid grid-cols-3 gap-3">
+      <div className="mt-4 grid grid-cols-2 gap-3 px-2 xl:grid-cols-3">
         {landingPageFeatures.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}

@@ -1,16 +1,10 @@
 import { testimonialsWithAuthor } from "@/config/landing-page";
-import Text from "../Text";
 import { getRandomElementsFromArray } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Text from "../Text";
 
 const Testimonials = () => {
-  const testimonials = getRandomElementsFromArray(
-    testimonialsWithAuthor,
-    7,
-  ).sort((a, b) => b.text.length - a.text.length);
-
-  //swap first and last elements
-  const last = testimonials.pop();
-  testimonials.unshift(last);
+  const testimonials = getRandomElementsFromArray(testimonialsWithAuthor, 6);
 
   return (
     <section
@@ -19,19 +13,25 @@ const Testimonials = () => {
     >
       <Text variant="h1">Testimonials</Text>
       <Text role="subtitle">We have countless satisfied users!</Text>
-      <div className="grid max-w-7xl grid-cols-4 gap-2">
+      <div className="grid max-w-7xl grid-cols-3 gap-2 px-4">
         {testimonials.map(({ author, text }, index) => {
+          const initials = author
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase())
+            .join();
+
           return (
             <article
-              className={`rounded-md border border-border p-3 ${
-                index === 1 ? "col-span-2" : ""
-              }`}
+              className={`flex flex-col justify-between gap-4 rounded-md bg-destructive-foreground p-6 shadow-sm`}
               key={index}
             >
               <span className="italic">&quot;{text}&quot;</span>
-              <div>
-                <span className="text-right">- {author}</span>
-              </div>
+              <Avatar>
+                <AvatarImage
+                  src={`https://i.pravatar.cc/50?img=${4 * index}`}
+                />
+                <AvatarFallback>{initials}</AvatarFallback>
+              </Avatar>
             </article>
           );
         })}

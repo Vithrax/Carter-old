@@ -1,4 +1,4 @@
-import { ArrowBigDown, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Navigation from "./Navigation";
 import Link from "next/link";
 import { buttonVariants } from "../ui/Button";
