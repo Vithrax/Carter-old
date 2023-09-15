@@ -7,16 +7,17 @@ const font = Playfair_Display({ subsets: ["latin"] });
 
 interface LogoProps {
   className?: string;
+  href?: string;
 }
 
-const Logo: FC<LogoProps> = ({ className }) => {
+const Logo: FC<LogoProps> = ({ className, href = "/" }) => {
   return (
     <Link
-      href="/"
+      href={href}
       className={cn(
         font.className,
         className,
-        "text-3xl tracking-tight underline decoration-primary underline-offset-2",
+        "text-center text-3xl leading-7 tracking-tight underline decoration-primary underline-offset-2",
       )}
     >
       <span className="font-bold text-primary">Cart</span>

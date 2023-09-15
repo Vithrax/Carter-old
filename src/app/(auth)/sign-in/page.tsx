@@ -22,6 +22,15 @@ const Page = async () => {
         <Text variant="h1">Sign in</Text>
       </header>
       <SignIn />
+      <p>
+        Not a member?{" "}
+        <Link
+          href="/sign-up"
+          className={buttonVariants({ variant: "link", size: "xs" })}
+        >
+          Sign up
+        </Link>
+      </p>
     </main>
   );
 };

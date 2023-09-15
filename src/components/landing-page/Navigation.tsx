@@ -8,7 +8,7 @@ const Navigation = async () => {
   const session = await getUserAuth();
 
   return (
-    <header className="h-[7vh] border-b">
+    <header className="h-16 border-b">
       <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-4">
         <Logo />
         <ul className="flex gap-4">
@@ -33,7 +33,7 @@ const Navigation = async () => {
             </Link>
           </div>
         ) : (
-          <Link className={buttonVariants()} href="/app">
+          <Link className={buttonVariants()} href="/a">
             Start
           </Link>
         )}
