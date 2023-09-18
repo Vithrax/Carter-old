@@ -18,8 +18,8 @@ export const navDashboardLinks: NavSideLink[] = [
     icon: Home,
   },
   {
-    href: "/a/items",
-    name: "Items",
+    href: "/a/products",
+    name: "Products",
     icon: Package,
   },
   {

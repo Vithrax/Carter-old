@@ -78,7 +78,7 @@ model Product {
   updatedAt        DateTime           @updatedAt
   name             String
   description      String?
-  price            Int                @default(0)
+  price            Int?               @default(0)
 
   @@unique([userId, name])
 }
