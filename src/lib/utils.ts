@@ -13,3 +13,7 @@ export function getRandomElementsFromArray<T>(array: T[], count: number): T[] {
   }
   return elements;
 }
+
+export function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

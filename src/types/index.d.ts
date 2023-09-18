@@ -11,3 +11,9 @@ export type FeatureCard = {
   description: string;
   icon: LucideIcon;
 };
+
+export type NavSideLink = {
+  href: string;
+  name: string;
+  icon: LucideIcon;
+};

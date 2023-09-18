@@ -1,18 +1,16 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/Button";
-import { ScrollArea } from "./ui/ScrollArea";
-import {
-  BarChart2,
-  Bell,
-  DollarSign,
-  Home,
-  ListChecks,
-  Package,
-  ScrollText,
-  Settings,
-  TrendingUp,
-} from "lucide-react";
+import { Bell, Settings } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import Logo from "./Logo";
+import SideBarItem from "./SideBarItem";
+import {
+  navAnalyticsLinks,
+  navDashboardLinks,
+  navFavoriteLinks,
+} from "@/config/navigation";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   favorites?: string[];
@@ -20,29 +18,17 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Sidebar({ className, favorites }: SidebarProps) {
   return (
-    <div className={cn("h-full overflow-auto", className)}>
-      <div className="flex h-full flex-col gap-4 py-4">
+    <aside className={cn("h-full overflow-auto", className)}>
+      <nav className="flex h-full flex-col gap-4 py-4">
         <div className="px-3 py-2">
+          <Logo className="mb-8 block" />
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Dashboard
           </h2>
           <div className="space-y-1">
-            <Button variant="secondary" className="w-full justify-start">
-              <Home className="mr-2 h-4 w-4" />
-              Overview
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <Package className="mr-2 h-4 w-4" />
-              Items
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <ScrollText className="mr-2 h-4 w-4" />
-              Recipies
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <ListChecks className="mr-2 h-4 w-4" />
-              Shopping Lists
-            </Button>
+            {navDashboardLinks.map((navLink) => (
+              <SideBarItem key={navLink.name} {...navLink} />
+            ))}
           </div>
         </div>
         <div className="px-3 py-2">
@@ -50,36 +36,22 @@ export function Sidebar({ className, favorites }: SidebarProps) {
             Analytics
           </h2>
           <div className="space-y-1">
-            <Button variant="ghost" className="w-full justify-start">
-              <TrendingUp className="mr-2 h-4 w-4" />
-              Popular items
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <DollarSign className="mr-2 h-4 w-4" />
-              Price tracker
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <BarChart2 className="mr-2 h-4 w-4" />
-              Statistics
-            </Button>
+            {navAnalyticsLinks.map((navLink) => (
+              <SideBarItem key={navLink.name} {...navLink} />
+            ))}
           </div>
         </div>
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Favorites
           </h2>
-          <Button variant="ghost" className="w-full justify-start">
-            <DollarSign className="mr-2 h-4 w-4" />
-            Shopping Lists
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
-            <BarChart2 className="mr-2 h-4 w-4" />
-            Recipes
-          </Button>
+          {navFavoriteLinks.map((navLink) => (
+            <SideBarItem key={navLink.name} {...navLink} />
+          ))}
         </div>
         <div className="mt-auto flex w-full justify-around">
           <Button variant="ghost" className="justify-start">
-            <Settings className="mr-2 h-4 w-4" />
+            <Settings className="mr-2 h-4 w-4 text-primary" />
             My account
           </Button>
           <div className="flex items-center">
@@ -89,7 +61,7 @@ export function Sidebar({ className, favorites }: SidebarProps) {
             <ThemeToggle />
           </div>
         </div>
-      </div>
-    </div>
+      </nav>
+    </aside>
   );
 }
