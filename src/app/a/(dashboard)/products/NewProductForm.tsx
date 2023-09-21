@@ -27,30 +27,39 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import { Unit } from "@prisma/client";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const unitTypes = Object.keys(Unit);
 
 interface NewProductFormProps {}
 
 const NewProductForm: FC<NewProductFormProps> = ({}) => {
+  const router = useRouter();
+
   const form = useForm<ProductCreateRequest>({
     resolver: zodResolver(ProductCreateValidator),
   });
 
-  const {
-    mutate: createProduct,
-    data,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-  } = trpc.products.createProduct.useMutation();
+  const { mutate: createProduct, data } =
+    trpc.products.createProduct.useMutation({
+      onSuccess: (data) => {
+        toast({
+          title: "Product Created!",
+          description: `${data.name} added to your database!`,
+        });
 
-  console.log(data);
-  console.log(isLoading);
-  console.log(isError);
-  console.log(isSuccess);
-  console.log(error);
+        form.reset();
+        router.back();
+      },
+      onError: (data) => {
+        toast({
+          title: "Error!",
+          description: data.message,
+          variant: "destructive",
+        });
+      },
+    });
 
   return (
     <Form {...form}>

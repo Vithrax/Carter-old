@@ -17,3 +17,9 @@ export type NavSideLink = {
   name: string;
   icon: LucideIcon;
 };
+
+export type FilterOption = {
+  label: string;
+  value: string;
+  icon?: React.ComponentType<{ className?: string }>;
+};

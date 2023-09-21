@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/SideBar";
 import { checkAuth } from "@/lib/auth/utils";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  // await checkAuth();
+  await checkAuth();
 
   return (
     <>

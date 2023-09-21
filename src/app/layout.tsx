@@ -22,8 +22,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <div className="h-screen antialiased">{children}</div>
-          <Toaster />
         </Providers>
+        <Toaster />
       </body>
     </html>
   );

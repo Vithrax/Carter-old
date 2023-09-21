@@ -1,8 +1,8 @@
-import z from "zod";
-import { protectedProcedure, publicProcedure, router } from "../trpc";
+import { protectedProcedure, router } from "../trpc";
 import { db } from "@/lib/db";
 import { ProductCreateValidator } from "@/lib/validators/product-create";
-import { Unit } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { TRPCError } from "@trpc/server";
 
 export const productsRouter = router({
   getProducts: protectedProcedure.query(async (opts) => {
@@ -20,11 +20,9 @@ export const productsRouter = router({
   createProduct: protectedProcedure
     .input(ProductCreateValidator)
     .mutation(async (opts) => {
-      console.log("test");
       const { name, description, price, unit } = opts.input;
       const { id } = opts.ctx.session.user;
 
-      // ! input validator is.. problaby incorrect
       try {
         const newProduct = await db.product.create({
           data: {
@@ -35,8 +33,22 @@ export const productsRouter = router({
             userId: id,
           },
         });
-      } catch (err) {
-        console.log(err);
+
+        return newProduct;
+      } catch (error) {
+        if (error instanceof PrismaClientKnownRequestError) {
+          if (error.code === "P2002") {
+            throw new TRPCError({
+              code: "BAD_REQUEST",
+              message: "Name is already taken! please choose different one.",
+            });
+          }
+        }
+
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Something went wrong. Please try again later.",
+        });
       }
     }),
 });

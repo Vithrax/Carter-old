@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { FC } from "react";
+import NewRecipe from "./NewRecipe";
 
 interface pageProps {}
 
@@ -11,7 +12,9 @@ const page: FC<pageProps> = ({}) => {
         <TabsTrigger value="create">Create</TabsTrigger>
       </TabsList>
       <TabsContent value="catalog">Catalog</TabsContent>
-      <TabsContent value="create">Create form</TabsContent>
+      <TabsContent value="create">
+        <NewRecipe />
+      </TabsContent>
     </Tabs>
   );
 };
